@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StocksController!{% endblock %}
+
+{% block body %}
+<style>
+    div {margin: 50px;}
+    table {display: flex; justify-content: center; align-items: center}
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .id {text-align: center; width: 85px;}
+    .date {text-align: center; width: 75px;}
+    .describe {width: 200px;}
+    th.qtyUp, td.qtyUp {width: 75px; text-align: center;}
+    th.amount, td.amount {width: 100px; text-align: center;}
+    .mainHeaders {width: 100px; text-align: center;}
+</style>
+
+<div>
+    <h2>Etat des stocks</h2>
+
+    <table border=1>
+        <tr>
+            <th rowspan="2" class="id">Identitiant</th>
+            <th rowspan="2"class="date">Date</th>
+            <th rowspan="2" class="describe">Libellé</th>
+            <th colspan="3">Entrées</th>
+            <th colspan="3">Sorties</th>
+            <th colspan="3">Stocks</th>
+        </tr>
+        <tr>
+            <th class="qtyUp">Qté</th>
+            <th class="qtyUp">P.U.</th>
+            <th class="amount">Montant</th>
+            <th class="qtyUp">Qté</th>
+            <th class="qtyUp">P.U.</th>
+            <th class="amount">Montant</th>
+            <th class="qtyUp">Qté</th>
+            <th class="qtyUp">P.U.</th>
+            <th class="amount">Montant</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td class="id">{{ stock.id }}</td>
+                <td class="date">{{ stock.date|date('d/m/y') }}</td>
+                <td class="describe">{{ stock.description }}</td>
+                <td class="qtyUp">{{ stock.quantityEntered }}</td>
+                <td class="qtyUp">{{ stock.upEntered }}</td>
+                <td class="amount">{{ stock.amountEntered }}</td>
+                <td class="qtyUp">{{ stock.quantityOutput }}</td>
+                <td class="qtyUp">{{ stock.upOutput }}</td>
+                <td class="amount">{{ stock.amountOutput }}</td>
+                <td class="qtyUp">{{ stock.quantityStocks }}</td>
+                <td class="qtyUp">{{ stock.upStocks }}</td>
+                <td class="amount">{{ stock.amountStocks }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
